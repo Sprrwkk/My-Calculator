@@ -21,7 +21,7 @@ class CalculatorInterface(QMainWindow):
         self.setCentralWidget(self._centralWidget)
         self._centralWidget.setLayout(self.generalLayout)
         self._createDisplay()
-        #self._createButtons()
+        self._createButtons()
 
 
 
@@ -32,8 +32,36 @@ class CalculatorInterface(QMainWindow):
         self.display.setReadOnly(True)
         self.generalLayout.addWidget(self.display)
 
+    def _createButtons(self):
+        self.buttons = {}
+        buttonsLayout = QGridLayout()
+        buttons = {'7': (0, 0),
+                         '8': (0, 1),
+                         '9': (0, 2),
+                         '/': (0, 3),
+                         'C': (0, 4),
+                         '4': (1, 0),
+                         '5': (1, 1),
+                         '6': (1, 2),
+                         '*': (1, 3),
+                         '(': (1, 4),
+                         '1': (2, 0),
+                         '2': (2, 1),
+                         '3': (2, 2),
+                         '-': (2, 3),
+                         ')': (2, 4),
+                         '0': (3, 0),
+                         '00': (3, 1),
+                         '.': (3, 2),
+                         '+': (3, 3),
+                         '=': (3, 4),
+                         }
 
-
+        for buttonText, position in buttons.items():
+            self.buttons[buttonText] = QPushButton(buttonText)
+            self.buttons[buttonText].setFixedSize(40, 40)
+            buttonsLayout.addWidget(self.buttons[buttonText], position[0], position[1])
+            self.generalLayout.addLayout(buttonsLayout)
 
 
 
